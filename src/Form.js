@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import "bootstrap/dist/css/bootstrap.min.css";
+import Button from 'react-bootstrap/Button'
+import form from 'react-bootstrap/Form'
+import "./Form.css"
 
 
 class Form extends React.Component{
@@ -31,14 +33,27 @@ class Form extends React.Component{
 
     render(){
     return (
-        <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-        </form>
+        <div class="form-class">
+     <form>
+  <form.Group controlId="formBasicEmail">
+    <form.Label>Email address</form.Label>
+    <form.Control type="email" placeholder="Enter email" />
+    <form.Text className="text-muted">
+      We'll never share your email with anyone else.
+    </form.Text>
+  </form.Group>
+
+  <form.Group controlId="formBasicPassword">
+    <form.Label>Password</form.Label>
+    <form.Control type="password" placeholder="Password" />
+  </form.Group>
+  <form.Group controlId="formBasicCheckbox">
+    <form.Check type="checkbox" label="Check me out" />
+  </form.Group>
+  <Button variant="primary" type="submit">
+    Submit
+  </Button>
+</form>
         </div>
     )
     }

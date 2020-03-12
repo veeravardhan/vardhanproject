@@ -14,7 +14,9 @@ class MyForm extends React.Component {
 
   handleSubmit(values) {
     const usname = {
-      name : values.name
+      name : values.name,
+      email : values.email,
+      phone : values.phone
     }
     axios.post('http://localhost:3001/user/add',usname)
     .then((res) => {
@@ -44,6 +46,7 @@ const validationSchema = Yup.object().shape({
 
   return(
     <div className="form-class">
+    <h2 className='Heading'>Welcome to My WebSite</h2> <br/>
     <Formik
       initialValues={{ name:"", email:"", phone:""}}
       validationSchema={validationSchema}

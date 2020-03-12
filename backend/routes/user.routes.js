@@ -27,6 +27,7 @@ router.route('/').get((req,res) => {
     user.find({ }).exec((err, result) => {
         if (err) { console.log(err); res.status(500).send("problem retrieving" + err); return; }
         res.status(200).send(result);
+        console.log(result)
     })
     // user.find()
     //     .then(users => {

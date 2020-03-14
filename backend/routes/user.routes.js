@@ -6,12 +6,16 @@ let user = require("../models/user.model")
 router.route('/add').post((req,res) => {
     console.log("vardhan here 2")
     console.log(req.body)
-    let username = req.body
-    user.create(username, (err, foodItem) => {
+    let userhere = new user()
+    userhere.name = req.body.name
+    userhere.email = req.body.email
+    userhere.phone = req.body.phone
+    userhere.password = req.body.password
+    user.create(userhere, (err, userdetails) => {
         if (err) {
             res.status(500).send(err)
         } else {
-            res.status(200).send("User added")
+            res.status(200).send(userdetails)
         }
     })
     // let username = req.body

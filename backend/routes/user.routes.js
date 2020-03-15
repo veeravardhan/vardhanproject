@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let user = require("../models/user.model")
+let bcrypt = require('bcryptjs')
 
 
 
@@ -11,12 +12,21 @@ router.route('/add').post((req,res) => {
     userhere.email = req.body.email
     userhere.phone = req.body.phone
     userhere.password = req.body.password
-    user.create(userhere, (err, userdetails) => {
-        if (err) {
-            res.status(500).send(err)
-        } else {
-            res.status(200).send(userdetails)
-        }
+
+    //creare hash and salt
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(userhere.password,salt,(err,hash) => {
+            if(err) throw err
+            userhere.password = hash
+            console.log(userhere.password)
+            user.create(userhere, (err, userdetails) => {
+                if (err) {
+                    res.status(500).send(err)
+                } else {
+                    res.status(200).send(userdetails)
+                }
+            })
+        })
     })
     // let username = req.body
     //     const newUser = new user(username)
